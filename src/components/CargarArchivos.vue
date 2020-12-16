@@ -6,13 +6,16 @@
         role="progressbar"
         :aria-valuenow="progress"
         aria-valuemin="0"
-        aria-valuemax="100"
+        aria-valuemax="200"
         :style="{ width: progress + '%' }"
       >
         {{ progress }}%
       </div>
     </div>
-
+    <label for="name">Nombre</label>
+      <input type="text" class="form-control" id="name" placeholder="nombre del archivo" v-model="nomdoc">
+    <label for="name">Fecha vencimiento</label>
+      <input type="date" class="form-control" id="date" placeholder="fecha vencimiento" v-model="fecvencimientodoc">
     <label class="btn btn-default">
       <input type="file" ref="file" @change="selectFile" />
     </label>
@@ -31,11 +34,13 @@
           <th scope="row">id</th>
           <th scope="row">nombre</th>
           <th scope="row">Link</th>
+          <th scope="row" data-type="date" data-format-string="Do MMMM YYYY">Fecha</th>
         </thead>  
                 <tr v-for=" dato in fileinfos " :key="dato.id">
                 <td>{{ dato.iddoc }}</td>
                 <td>{{ dato.nomdoc }}</td>
                 <td>{{ dato.pathdoc }}</td>
+                <td>{{ fecvencimientodoc }}</td>
             </tr>
         </table>
       </ul>
