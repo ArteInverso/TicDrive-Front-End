@@ -9,10 +9,10 @@ Repositorio proyecto tipo Drive, front end desarrollado en Vue.js
 # instalacion de dependencias
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# Iniciar host de desarrollo localhost:8081
+npm run serve
 
-# build for production with minification
+# Build para produccion
 npm run build
 
 # build for production and view the bundle analyzer report
