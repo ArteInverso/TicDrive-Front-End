@@ -18,21 +18,26 @@
     </label>
 
     <button class="btn btn-success" :disabled="!selectedFiles" @click="upload">
-      Upload
+      Cargar
     </button>
 
     <div class="alert alert-light" role="alert">{{ message }}</div>
 
     <div class="card">
-      <div class="card-header">List of Files</div>
+      <div class="card-header">Lista de Archivos</div>
       <ul class="list-group list-group-flush">
-        <li
-          class="list-group-item"
-          v-for="(file, index) in fileInfos"
-          :key="index"
-        >
-          <a :href="file.url">{{ file.name }}</a>
-        </li>
+        <table class="table table-dark">
+        <thead>
+          <th scope="row">id</th>
+          <th scope="row">nombre</th>
+          <th scope="row">Link</th>
+        </thead>  
+                <tr v-for=" dato in fileinfos " :key="dato.id">
+                <td>{{ dato.iddoc }}</td>
+                <td>{{ dato.nomdoc }}</td>
+                <td>{{ dato.pathdoc }}</td>
+            </tr>
+        </table>
       </ul>
     </div>
   </div>
@@ -50,7 +55,12 @@ export default {
       currentFile: undefined,
       progress: 0,
       message: "",
-
+      iddoc: undefined,
+      nomdoc: undefined,
+      feccarguedoc: undefined,
+      fecvencimientodoc: undefined,
+      pathdoc: undefined,
+      fileinfos: [],   
       fileInfos: []
     };
   },
@@ -74,7 +84,7 @@ export default {
         })
         .catch(() => {
           this.progress = 0;
-          this.message = "Could not upload the file!";
+          this.message = "No se pudo cargar el archivo!";
           this.currentFile = undefined;
         });
 
@@ -83,7 +93,7 @@ export default {
   },
       mounted() {
     UploadService.getFiles().then(response => {
-      this.DocInDB = response.data;
+      this.fileinfos = response.data;
     });
   }
 };
