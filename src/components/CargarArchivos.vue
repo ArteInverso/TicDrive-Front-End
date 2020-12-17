@@ -1,6 +1,6 @@
 <template>
   <div >
-    <div v-if="currentFile" class="progress">
+    <div v-if="form.currentFile" class="progress">
       <div
         class="progress-bar progress-bar-info progress-bar-striped"
         role="progressbar"
@@ -12,22 +12,23 @@
         {{ progress }}%
       </div>
     </div>
+    
       <label for="name">id</label>
-        <input type="text" class="form-control" id="id" placeholder="id archivo" v-model="iddoc">
+        <input type="text" class="form-control" id="id" placeholder="id archivo" v-model="form.iddoc">
       <label for="name">Fecha vencimiento</label>
-        <input type="date" class="form-control" id="date" placeholder="fecha vencimiento" v-model="fecvencimientodoc">
+        <input type="date" class="form-control" id="date" placeholder="fecha vencimiento" v-model="form.fecvencimientodoc">
       <label for="name">Nombre</label>
-        <input type="text" class="form-control" id="name" placeholder="nombre del archivo" v-model="nomdoc">
+        <input type="text" class="form-control" id="name" placeholder="nombre del archivo" v-model="form.nomdoc">
       <label for="name">Usuario</label>
-        <input type="text" class="form-control" id="user" placeholder="id usuaio" v-model="idusuario">
+        <input type="text" class="form-control" id="user" placeholder="id usuaio" v-model="form.idusuario">
     <label class="btn btn-default">
       <input type="file" ref="file" @change="selectFile" />
     </label>
 
-    <button class="btn btn-success" :disabled="!selectedFiles" @click="upload">
+    <button class="btn btn-success" :disabled="!form.selectedFiles" @click="upload">
       Cargar
     </button>
-
+  
     <div class="alert alert-light" role="alert">{{ message }}</div>
 
     <div class="card">
@@ -44,7 +45,7 @@
                 <td>{{ dato.iddoc }}</td>
                 <td>{{ dato.nomdoc }}</td>
                 <td>{{ dato.pathdoc }}</td>
-                <td>{{ fecvencimientodoc }}</td>
+                <td>{{ dato.fecvencimientodoc }}</td>
             </tr>
         </table>
       </ul>
@@ -60,29 +61,31 @@ export default {
   name: "upload-files",
   data() {
     return {
+      form: {
       selectedFiles: undefined,
       currentFile: undefined,
+      iddoc: '',
+      nomdoc: '',
+      feccarguedoc: undefined,
+      fecvencimientodoc: '',
+      pathdoc: undefined,
+      idusuario: '',
+      },
       progress: 0,
       message: "",
-      iddoc: undefined,
-      nomdoc: undefined,
-      feccarguedoc: undefined,
-      fecvencimientodoc: undefined,
-      pathdoc: undefined,
-      idusuario: undefined,
       fileinfos: [],   
       fileInfos: []
     };
   },
   methods: {
         selectFile() {
-      this.selectedFiles = this.$refs.file.files;
+      this.form = this.$refs.file.files;
            }, 
           upload() {
       this.progress = 0;
-
-      this.currentFile = this.selectedFiles.item(0);
-      UploadService.upload(this.currentFile, event => {
+  
+      this.form = this.form.item(0);
+      UploadService.upload(this.form, event => {
         this.progress = Math.round((100 * event.loaded) / event.total);
       })
         .then(response => {
