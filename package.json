@@ -2,6 +2,9 @@
     "name": "ticdrive",
     "version": "0.1.0",
     "private": true,
+    "engines": {
+        "node": "14.15.1"
+    },
     "scripts": {
         "postinstall": "npm install express",
         "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
