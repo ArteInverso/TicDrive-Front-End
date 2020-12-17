@@ -12,23 +12,21 @@
         {{ progress }}%
       </div>
     </div>
-    
-      <label for="name">id</label>
-        <input type="text" class="form-control" id="id" placeholder="id archivo" v-model="form.iddoc">
-      <label for="name">Fecha vencimiento</label>
-        <input type="date" class="form-control" id="date" placeholder="fecha vencimiento" v-model="form.fecvencimientodoc">
-      <label for="name">Nombre</label>
-        <input type="text" class="form-control" id="name" placeholder="nombre del archivo" v-model="form.nomdoc">
-      <label for="name">Usuario</label>
-        <input type="text" class="form-control" id="user" placeholder="id usuaio" v-model="form.idusuario">
+      <label for="iddoc">id</label>
+        <input type="number" class="form-control" id="iddoc" placeholder="id archivo" v-model="form.iddoc">
+      <label for="fecvencimientodoc">Fecha vencimiento</label>
+        <input type="date" class="form-control" id="fecvencimientodoc" placeholder="fecha vencimiento" v-model="form.fecvencimientodoc">
+      <label for="nomdoc">Nombre</label>
+        <input type="text" class="form-control" id="nomdoc" placeholder="nombre del archivo" v-model="form.nomdoc">
+      <label for="idusuario">Id Usuario</label>
+        <input type="number" class="form-control" id="idusuario" placeholder="id usuaio" v-model="form.idusuario">
     <label class="btn btn-default">
       <input type="file" ref="file" @change="selectFile" />
     </label>
 
-    <button class="btn btn-success" :disabled="!form.selectedFiles" @click="upload">
+    <button class="btn btn-success" :disabled="!form.uploaded_file" @click="upload">
       Cargar
     </button>
-  
     <div class="alert alert-light" role="alert">{{ message }}</div>
 
     <div class="card">
@@ -55,21 +53,21 @@
 
 
 <script>
+
 import UploadService from "../services/CargasArchivosService";
+
 
 export default {
   name: "upload-files",
   data() {
     return {
       form: {
-      selectedFiles: undefined,
+      uploaded_file: undefined,
       currentFile: undefined,
-      iddoc: '',
+      iddoc: 0,
       nomdoc: '',
-      feccarguedoc: undefined,
       fecvencimientodoc: '',
-      pathdoc: undefined,
-      idusuario: '',
+      idusuario: 0,
       },
       progress: 0,
       message: "",
@@ -79,12 +77,11 @@ export default {
   },
   methods: {
         selectFile() {
-      this.form.selectedFiles = this.$refs.file.files;
+      this.form.uploaded_file = this.$refs.file.files;
            }, 
           upload() {
       this.progress = 0;
-  
-      this.form = this.form.selectedFiles.item(0);
+
       UploadService.upload(this.form, event => {
         this.progress = Math.round((100 * event.loaded) / event.total);
       })
@@ -110,4 +107,5 @@ export default {
     });
   }
 };
+
 </script>
