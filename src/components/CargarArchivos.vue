@@ -79,12 +79,12 @@ export default {
   },
   methods: {
         selectFile() {
-      this.form = this.$refs.file.files;
+      this.form.selectedFiles = this.$refs.file.files;
            }, 
           upload() {
       this.progress = 0;
   
-      this.form = this.form.item(0);
+      this.form = this.form.selectedFiles.item(0);
       UploadService.upload(this.form, event => {
         this.progress = Math.round((100 * event.loaded) / event.total);
       })
