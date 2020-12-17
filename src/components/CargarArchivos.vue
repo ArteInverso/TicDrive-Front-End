@@ -12,10 +12,14 @@
         {{ progress }}%
       </div>
     </div>
-    <label for="name">Nombre</label>
-      <input type="text" class="form-control" id="name" placeholder="nombre del archivo" v-model="nomdoc">
-    <label for="name">Fecha vencimiento</label>
-      <input type="date" class="form-control" id="date" placeholder="fecha vencimiento" v-model="fecvencimientodoc">
+      <label for="name">id</label>
+        <input type="text" class="form-control" id="id" placeholder="id archivo" v-model="iddoc">
+      <label for="name">Fecha vencimiento</label>
+        <input type="date" class="form-control" id="date" placeholder="fecha vencimiento" v-model="fecvencimientodoc">
+      <label for="name">Nombre</label>
+        <input type="text" class="form-control" id="name" placeholder="nombre del archivo" v-model="nomdoc">
+      <label for="name">Usuario</label>
+        <input type="text" class="form-control" id="user" placeholder="id usuaio" v-model="idusuario">
     <label class="btn btn-default">
       <input type="file" ref="file" @change="selectFile" />
     </label>
@@ -65,6 +69,7 @@ export default {
       feccarguedoc: undefined,
       fecvencimientodoc: undefined,
       pathdoc: undefined,
+      idusuario: undefined,
       fileinfos: [],   
       fileInfos: []
     };
