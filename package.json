@@ -3,7 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "postinstall": "npm install express"
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "start": "npm run serve"
     },
     "dependencies": {
         "core-js": "^3.6.5",
