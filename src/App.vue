@@ -4,7 +4,7 @@
       <div style="margin: 20px">
         <h3>TicDrive</h3>
         <h4>Carga de archivos</h4>
-        <p>suba archivos de menos de 20KB por restricciones de heroku</p>
+        <h5>suba archivos de menos de 20KB por restricciones de heroku</h5>
       </div>
 
       <upload-files></upload-files>
