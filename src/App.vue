@@ -5,9 +5,7 @@
         <h3>TicDrive</h3>
         <h4>Carga de archivos </h4>
       </div>
-      <div>
-        <p>suba archivos de menos de 20KB por restricciones de heroku </p>
-        </div>
+        
       <upload-files></upload-files>
     </div>
   </div>

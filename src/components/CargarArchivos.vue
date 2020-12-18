@@ -10,6 +10,7 @@
         :style="{ width: progress + '%' }"
       >
         {{ progress }}%
+        <p>suba archivos de menos de 20KB por restricciones de heroku </p>
       </div>
     </div>
       <label for="iddoc">id</label>
