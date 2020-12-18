@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container" style="width:600px">
-      <div style="margin: 30px">
+      <div style="margin: 20px">
         <h3>TicDrive</h3>
         <h4>suba archivos de menos de 20KB</h4>
       </div>
