@@ -10,9 +10,10 @@
         :style="{ width: progress + '%' }"
       >
         {{ progress }}%
-        <p>suba archivos de menos de 20KB por restricciones de heroku </p>
+        
       </div>
     </div>
+      <p>suba archivos de menos de 20KB por restricciones de heroku </p>
       <label for="iddoc">id</label>
         <input type="number" class="form-control" id="iddoc" placeholder="id archivo" v-model="form.iddoc">
       <label for="fecvencimientodoc">Fecha vencimiento</label>
